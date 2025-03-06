@@ -6,6 +6,32 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <main>
+        <section class="slider">
+            <img src="" alt=""></img>
+            <img src="" alt=""></img>
+            <img src="" alt=""></img>
+            <img src="" alt=""></img>
+        </section>
+        <script type="text/javascript">
+            const slider = document.querySelector(".slider");
+            const img = document.createElement("img");
+            img.src = "https://picsum.photos/id/237/200/300";
+            img.alt = "slide 1";
+            slider.appendChild(img);
+
+            // przesuniecie
+            let position = 0
+            function animateSlider(){
+                img.style.transform = "translatex("+ position +"px)";
+                position += 2;
+                if (position <= 250){
+                    requestAnimationFrame(animateSlider)
+                }
+            }
+            animateSlider();
+            
+        </script>
+    </main>
 </body>
 </html>
