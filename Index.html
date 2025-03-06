@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="a1">
+    <input type="number" id="a2">
+    <input type="number" id="a3">
+    <input type="number" id="a4">
+    <button>Przelicz</button>
+
+    <div id="result">
+        <p>Suma: <span id="sumElement"></span></p>
+        <p>Średnia: <span id="average"></span></p>
+        <p>Min: <span id="minValue"></span></p>
+        <p>Max: <span id="maxValue"></span></p>
+    </div>
+
+    <script type="text/javascript">
+        const input1 = document.querySelector("#a1");
+        const input2 = document.querySelector("#a2");
+        const input3 = document.querySelector("#a3");
+        const input4 = document.querySelector("#a4");
+
+        const sumElement = document.querySelector("#sumElement");
+        const averageElement = document.querySelector("#average");
+        const minElement = document.querySelector("#minValue");
+        const maxElement = document.querySelector("#maxValue");
+        const button = document.querySelector("button");
+
+        button.addEventListener('click', () => {
+            
+            const input1Value = +input1.value || 0;
+            const input2Value = +input2.value || 0;
+            const input3Value = +input3.value || 0;
+            const input4Value = +input4.value || 0;
+
+            const sum = input1Value + input2Value + input3Value + input4Value;
+            const average = sum / 4;
+            const minValue = Math.min(input1Value, input2Value, input3Value, input4Value);
+            const maxValue = Math.max(input1Value, input2Value, input3Value, input4Value);
+
+            sumElement.textContent = sum;
+            averageElement.textContent = average.toFixed(2); 
+            minElement.textContent = minValue;
+            maxElement.textContent = maxValue;
+        });
+    </script>
+</body>
+</html>
