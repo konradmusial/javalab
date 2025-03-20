@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notatnik</title>
+</head>
+<body>
+    <h1>Notatnik</h1>
+
+    <input type="text" id="search" placeholder="Szukaj..." oninput="renderNotes()"><br><br>
+
+    <form id="noteForm">
+        <label for="title">Tytuł:</label>
+        <input type="text" id="title" placeholder="Wpisz tytuł" required><br><br>
+        
+        <label for="content">Treść:</label>
+        <textarea id="content" placeholder="Wpisz treść notatki" required></textarea><br><br>
+        
+        <label for="color">Kolor:</label>
+        <select id="color">
+            <option value="blue">Niebieski</option>
+            <option value="red">Czerwony</option>
+            <option value="green">Zielony</option>
+            <option value="yellow">Żółty</option>
+        </select><br><br>
+
+        <label for="pin">Przypnij do góry:</label>
+        <input type="checkbox" id="pin"><br><br>
+
+        <label for="tags">Tagi:</label>
+        <input type="text" id="tags" placeholder="Wpisz tagi, oddzielone przecinkami"><br><br>
+
+        <button type="submit">Dodaj Notatkę</button>
+    </form>
+
+    <h2>Moje Notatki:</h2>
+    <div id="notesContainer"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
