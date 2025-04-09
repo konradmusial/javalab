@@ -3,35 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Slider</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <section class="slider">
-            <img src="" alt=""></img>
-            <img src="" alt=""></img>
-            <img src="" alt=""></img>
-            <img src="" alt=""></img>
-        </section>
-        <script type="text/javascript">
-            const slider = document.querySelector(".slider");
-            const img = document.createElement("img");
-            img.src = "https://picsum.photos/id/237/200/300";
-            img.alt = "slide 1";
-            slider.appendChild(img);
+    <div class="slider-container">
+        <div class="slider-track">
+            <div class="slide"><img src="https://picsum.photos/id/1015/800/300" alt="Slide 1"></div>
+            <div class="slide"><img src="https://picsum.photos/id/1016/800/300" alt="Slide 2"></div>
+            <div class="slide"><img src="https://picsum.photos/id/1018/800/300" alt="Slide 3"></div>
+            <div class="slide"><img src="https://picsum.photos/id/1020/800/300" alt="Slide 4"></div>
+        </div>
+        <button id="prev">Wstecz</button>
+        <button id="next">Dalej</button>
+        <button id="start">Start</button>
+    </div>
 
-            // przesuniecie
-            let position = 0
-            function animateSlider(){
-                img.style.transform = "translatex("+ position +"px)";
-                position += 2;
-                if (position <= 250){
-                    requestAnimationFrame(animateSlider)
-                }
-            }
-            animateSlider();
-            
-        </script>
-    </main>
+    <script src="main.js"></script>
 </body>
 </html>

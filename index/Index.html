@@ -3,51 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kalkulator</title>
 </head>
 <body>
-    <input type="number" id="a1">
-    <input type="number" id="a2">
-    <input type="number" id="a3">
-    <input type="number" id="a4">
-    <button>Przelicz</button>
+    <div id="inputContainer"></div>
 
     <div id="result">
-        <p>Suma: <span id="sumElement"></span></p>
-        <p>Średnia: <span id="average"></span></p>
-        <p>Min: <span id="minValue"></span></p>
-        <p>Max: <span id="maxValue"></span></p>
+        <p>Suma: <span id="sumElement">-</span></p>
+        <p>Średnia: <span id="average">-</span></p>
+        <p>Min: <span id="minValue">-</span></p>
+        <p>Max: <span id="maxValue">-</span></p>
     </div>
 
-    <script type="text/javascript">
-        const input1 = document.querySelector("#a1");
-        const input2 = document.querySelector("#a2");
-        const input3 = document.querySelector("#a3");
-        const input4 = document.querySelector("#a4");
+    <div id="buttons">
+        <button id="addInput">Dodaj pole</button>
+        <button id="removeLast">Usuń ostatnie</button>
+    </div>
+
+    <script>
+        const container = document.querySelector("#inputContainer");
+        const addBtn = document.querySelector("#addInput");
+        const removeBtn = document.querySelector("#removeLast");
 
         const sumElement = document.querySelector("#sumElement");
         const averageElement = document.querySelector("#average");
         const minElement = document.querySelector("#minValue");
         const maxElement = document.querySelector("#maxValue");
-        const button = document.querySelector("button");
 
-        button.addEventListener('click', () => {
-            
-            const input1Value = +input1.value || 0;
-            const input2Value = +input2.value || 0;
-            const input3Value = +input3.value || 0;
-            const input4Value = +input4.value || 0;
+        const createInputField = () => {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.classList.add("Number");
+            input.placeholder = "Wstaw cyfrę";
+            input.addEventListener("input", calculateLive);
+            container.appendChild(input);
+        };
 
-            const sum = input1Value + input2Value + input3Value + input4Value;
-            const average = sum / 4;
-            const minValue = Math.min(input1Value, input2Value, input3Value, input4Value);
-            const maxValue = Math.max(input1Value, input2Value, input3Value, input4Value);
+        for (let i = 0; i < 3; i++) createInputField();
+
+        addBtn.addEventListener("click", createInputField);
+
+        removeBtn.addEventListener("click", () => {
+            const inputs = document.querySelectorAll(".Number");
+            if (inputs.length > 0) {
+                container.removeChild(inputs[inputs.length - 1]);
+            }
+            calculateLive(); 
+        });
+
+        function calculateLive() {
+            const values = [...document.querySelectorAll(".Number")]
+                .map(input => parseInt(input.value))
+                .filter(value => !isNaN(value));
+
+            if (values.length === 0) {
+                sumElement.textContent = averageElement.textContent =
+                minElement.textContent = maxElement.textContent = "-";
+                return;
+            }
+
+            const sum = values.reduce((acc, val) => acc + val, 0);
+            const avg = sum / values.length;
+            const min = Math.min(...values);
+            const max = Math.max(...values);
 
             sumElement.textContent = sum;
-            averageElement.textContent = average.toFixed(2); 
-            minElement.textContent = minValue;
-            maxElement.textContent = maxValue;
-        });
+            averageElement.textContent = avg.toFixed(2);
+            minElement.textContent = min;
+            maxElement.textContent = max;
+        }
     </script>
 </body>
 </html>
